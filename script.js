@@ -72,12 +72,13 @@ const espinaca={
 
 const Pizzas= [cancha, muzzarella, especial, fugazza, fugazzetta, napolitana, cuatroQuesos, crudoRucula, espinaca];
 
-
+//Traigo del DOM los elementos necesarios para la actividad
 const btnConsult = document.getElementById('btnSubmit');
 const pizzaInfoContainer = document.getElementById('pizzaInfoContainer');
 const msgError = document.getElementById('msgError');
 
 
+// Función principal
 const searchPizza = (e) => {
 
     e.preventDefault();
@@ -96,20 +97,26 @@ const searchPizza = (e) => {
 
 }
 
+
+//Limpia el error cada vez que se submitea
 const clrError = () => {
     msgError.textContent = '';
 }
 
+
+//Limpia la pantalla en caso de que el input de un error
 const clrScreen = () => {
     pizzaInfoContainer.innerHTML= '';
 }
 
+
+//Valida lo ingresado en el input
 const isValid = (input) => {
     const inputNumberValid = /^[1-9]+[0-9]*$/; 
     return inputNumberValid.test(input);
 }
 
-
+//Función para renderizar datos de las pizzas o error si no existe id
 const renderPizza =(input) => {
 
     const pizzaSelected = JSON.parse(localStorage.getItem(input));
@@ -133,6 +140,7 @@ const renderPizza =(input) => {
 
 }
 
+//Función inicializadora que guarda el array de pizzas en el LS y coloca un escuchador en el submit
 const init = () => {
 
     Pizzas.forEach(pizza => localStorage.setItem(pizza.id, JSON.stringify(pizza)));
